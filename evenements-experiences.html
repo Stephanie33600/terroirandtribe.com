@@ -1,148 +1,79 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Terroir &amp; Tribe — Événements &amp; Expériences</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&family=DM+Sans:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --green: #6b7a3a;
-      --green-dark: #4a5528;
-      --green-light: #8a9a4e;
-      --green-pale: #d4de9a;
-      --rose: #c97a8e;
-      --rose-light: #f0c4d0;
-      --sand: #e8dfc8;
-      --terracotta: #c4784a;
-      --cream: #faf6ee;
-      --white: #ffffff;
-      --ink: #2a2a1e;
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; overflow-x: hidden; font-family: "DM Sans", sans-serif; background: var(--cream); color: var(--ink); }
-    .topbar {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 24px 40px; position: relative; z-index: 10;
-    }
-    .back-link {
-      font-family: "DM Sans", sans-serif; font-size: 12px; font-weight: 500;
-      color: var(--green-dark); text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
-      background: rgba(255,255,255,0.5); border: 1.5px solid transparent; padding: 6px 16px;
-      border-radius: 20px; backdrop-filter: blur(8px); transition: all 0.25s;
-    }
-    .back-link:hover { border-color: var(--green-light); background: rgba(255,255,255,0.8); }
-    .topbar-right {
-      font-family: "DM Sans", sans-serif; font-size: 11px; font-weight: 500;
-      letter-spacing: 0.1em; text-transform: uppercase; color: var(--green-dark); opacity: 0.7;
-    }
-    main {
-      max-width: 640px; margin: 0 auto; padding: 20px 32px 100px;
-    }
-    .eyebrow {
-      font-family: "DM Sans", sans-serif; font-size: 11px; font-weight: 500;
-      color: var(--terracotta); margin-bottom: 14px; letter-spacing: 0.35em; text-transform: uppercase;
-      text-align: center;
-    }
-    h1 {
-      font-family: "Syne", sans-serif; font-weight: 700; font-size: 42px;
-      color: var(--green-dark); letter-spacing: 0.04em; text-align: center; margin-bottom: 8px;
-    }
-    .tagline {
-      font-family: "DM Sans", sans-serif; font-size: 17px; font-style: italic;
-      color: var(--ink); opacity: 0.75; text-align: center; margin-bottom: 48px;
-    }
-    .body-text p {
-      font-family: "DM Sans", sans-serif; font-size: 16px; font-weight: 300;
-      line-height: 1.8; color: var(--ink); opacity: 0.85; margin-bottom: 20px;
-    }
-    .body-text p.emphasis { font-style: italic; }
-    .body-text p.strong { font-weight: 600; opacity: 1; }
-    .tags {
-      display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 32px 0 40px;
-    }
-    .tag {
-      font-family: "DM Sans", sans-serif; font-size: 13px; font-weight: 500;
-      background: rgba(107,122,58,0.12); color: var(--green-dark);
-      padding: 8px 18px; border-radius: 20px;
-    }
-    .cta {
-      display: block; text-align: center; text-decoration: none;
-      font-family: "DM Sans", sans-serif; font-size: 15px; font-weight: 600; color: white;
-      background: var(--terracotta); padding: 16px; border-radius: 10px; margin: 40px 0;
-      transition: background 0.25s;
-    }
-    .cta:hover { background: #a8663c; }
-    .closing {
-      border-top: 1px solid rgba(0,0,0,0.1); padding-top: 32px; text-align: center; margin-top: 40px;
-    }
-    .closing-title {
-      font-family: "Syne", sans-serif; font-size: 18px; letter-spacing: 0.06em; color: var(--green-dark); margin-bottom: 8px;
-    }
-    .closing-sub {
-      font-family: "DM Sans", sans-serif; font-size: 14px; font-style: italic; color: var(--ink); opacity: 0.7;
-    }
-    footer {
-      padding: 24px 40px; display: flex; justify-content: space-between; align-items: center;
-      font-family: "DM Sans", sans-serif; font-size: 12px; color: var(--ink); opacity: 0.6;
-    }
-    footer a { color: var(--green-dark); text-decoration: none; }
-    @media (max-width: 640px) {
-      .topbar { padding: 18px 20px; }
-      .topbar-right { display: none; }
-      main { padding: 10px 20px 80px; }
-      h1 { font-size: 30px; }
-      footer { padding: 16px 20px; }
-    }
-  </style>
-</head>
-<body>
-  <nav class="topbar">
-    <a class="back-link" href="index.html">&#8592; Retour à l'accueil</a>
-    <span class="topbar-right">vignerons familiaux · France</span>
-  </nav>
-
-  <main>
-    <p class="eyebrow">Terroir &amp; Tribe</p>
-    <h1>Des expériences<br>qui ont une âme.</h1>
-    <p class="tagline">Séminaires, team building et événements sur mesure autour de Bordeaux</p>
-
-    <div class="body-text">
-      <p>Depuis près de 20 ans, mon travail m'a amenée à parcourir le monde et à découvrir de nombreuses cultures et façons de vivre. Au fil de ces expériences, j'ai appris à découvrir les lieux autrement : en privilégiant les rencontres, les histoires et ces petits endroits que l'on n'aurait jamais trouvés seul.</p>
-      <p>C'est naturellement qu'est née Terroir &amp; Tribe – Expérience, dans le prolongement de mon activité dans le monde du vin.</p>
-      <p>J'aime profondément ma région et j'ai envie de la faire découvrir autrement que par les incontournables : une dégustation au milieu des vignes, une table cachée, une rencontre avec un passionné, une balade sur le bassin, un déjeuner les pieds dans le sable ou simplement un coucher de soleil sur le Bassin.</p>
-      <p>Bordeaux, ses vignobles, sa gastronomie, son patrimoine, l'océan et le Bassin d'Arcachon regorgent de pépites. Mon rôle est de les dénicher et de créer autour d'elles des expériences qui vous ressemblent.</p>
-      <p>Séminaire, team building, événement client, journée d'équipe ou séjour de plusieurs jours : chaque expérience est imaginée sur mesure, selon votre groupe, vos envies et votre budget.</p>
-      <p>Vin &amp; gastronomie, nature, culture, patrimoine, océan, rencontres locales… J'aime mélanger les univers et sortir des sentiers battus pour créer des moments que l'on vit vraiment et dont on se souvient.</p>
-    </div>
-
-    <div class="tags">
-      <span class="tag">Vin &amp; gastronomie</span>
-      <span class="tag">Nature</span>
-      <span class="tag">Culture &amp; patrimoine</span>
-      <span class="tag">Océan</span>
-      <span class="tag">Rencontres locales</span>
-    </div>
-
-    <div class="body-text">
-      <p>J'accompagne les entreprises de A à Z, de la recherche des lieux et partenaires jusqu'à la coordination sur place, en français comme en anglais.</p>
+ des lieux et partenaires jusqu'à la coordination sur place, en français comme en anglais.</p>
       <p class="emphasis">Parce qu'un événement réussi ne se résume pas à un programme bien organisé.</p>
       <p class="strong">Il doit raconter une histoire et laisser un souvenir.</p>
     </div>
 
-    <a class="cta" href="mailto:contact@terroirandtribe.com?subject=Discutons%20de%20votre%20projet%20d%27%C3%A9v%C3%A9nement">Discutons de votre projet &#8594;</a>
+    <a class="cta" id="cta-btn" href="mailto:contact@terroirandtribe.com?subject=Discutons%20de%20votre%20projet%20d%27%C3%A9v%C3%A9nement">Discutons de votre projet &#8594;</a>
 
     <div class="closing">
       <p class="closing-title">TERROIR &amp; TRIBE</p>
-      <p class="closing-sub">Des lieux qui inspirent. Des rencontres qui restent. Des moments qui font vibrer.</p>
+      <p class="closing-sub" id="closing-sub">Des lieux qui inspirent. Des rencontres qui restent. Des moments qui font vibrer.</p>
     </div>
   </main>
 
   <footer>
-    <a href="mailto:contact@terroirandtribe.com">Contact</a>
+    <a href="mailto:contact@terroirandtribe.com" id="footer-contact">Contact</a>
     <span>© 2025 Terroir &amp; Tribe</span>
   </footer>
+
+  <script>
+    const t = {
+      fr: {
+        back: "&#8592; Retour à l'accueil",
+        topbarRight: "vignerons familiaux · France",
+        h1: "Des expériences<br>qui ont une âme.",
+        tagline: "Séminaires, team building et événements sur mesure autour de Bordeaux",
+        body1: `<p>Depuis près de 20 ans, mon travail m'a amenée à parcourir le monde et à découvrir de nombreuses cultures et façons de vivre. Au fil de ces expériences, j'ai appris à découvrir les lieux autrement : en privilégiant les rencontres, les histoires et ces petits endroits que l'on n'aurait jamais trouvés seul.</p>
+          <p>C'est naturellement qu'est née Terroir &amp; Tribe – Expérience, dans le prolongement de mon activité dans le monde du vin.</p>
+          <p>J'aime profondément ma région et j'ai envie de la faire découvrir autrement que par les incontournables : une dégustation au milieu des vignes, une table cachée, une rencontre avec un passionné, une balade sur le bassin, un déjeuner les pieds dans le sable ou simplement un coucher de soleil sur le Bassin.</p>
+          <p>Bordeaux, ses vignobles, sa gastronomie, son patrimoine, l'océan et le Bassin d'Arcachon regorgent de pépites. Mon rôle est de les dénicher et de créer autour d'elles des expériences qui vous ressemblent.</p>
+          <p>Séminaire, team building, événement client, journée d'équipe ou séjour de plusieurs jours : chaque expérience est imaginée sur mesure, selon votre groupe, vos envies et votre budget.</p>
+          <p>Vin &amp; gastronomie, nature, culture, patrimoine, océan, rencontres locales… J'aime mélanger les univers et sortir des sentiers battus pour créer des moments que l'on vit vraiment et dont on se souvient.</p>`,
+        tags: ["Vin &amp; gastronomie", "Nature", "Culture &amp; patrimoine", "Océan", "Rencontres locales"],
+        body2: `<p>J'accompagne les entreprises de A à Z, de la recherche des lieux et partenaires jusqu'à la coordination sur place, en français comme en anglais.</p>
+          <p class="emphasis">Parce qu'un événement réussi ne se résume pas à un programme bien organisé.</p>
+          <p class="strong">Il doit raconter une histoire et laisser un souvenir.</p>`,
+        cta: "Discutons de votre projet &#8594;",
+        closingSub: "Des lieux qui inspirent. Des rencontres qui restent. Des moments qui font vibrer.",
+        footerContact: "Contact"
+      },
+      en: {
+        back: "&#8592; Back to home",
+        topbarRight: "family winemakers · France",
+        h1: "Experiences<br>with soul.",
+        tagline: "Seminars, team building and tailor-made events around Bordeaux",
+        body1: `<p>For nearly 20 years, my work has taken me around the world, discovering many cultures and ways of life. Along the way, I learned to experience places differently — by favouring encounters, stories and those small spots you'd never find on your own.</p>
+          <p>Terroir &amp; Tribe – Experience was born naturally, as an extension of my work in the world of wine.</p>
+          <p>I deeply love my region, and I want to share it beyond the usual landmarks: a tasting in the middle of the vines, a hidden table, a meeting with a passionate local, a walk along the bay, lunch with your feet in the sand, or simply a sunset over the Bassin.</p>
+          <p>Bordeaux, its vineyards, its gastronomy, its heritage, the ocean and the Bassin d'Arcachon are full of hidden gems. My role is to find them and build experiences around them that truly reflect who you are.</p>
+          <p>Seminar, team building, client event, team day or multi-day stay: every experience is designed on a bespoke basis, tailored to your group, your wishes and your budget.</p>
+          <p>Wine &amp; gastronomy, nature, culture, heritage, ocean, local encounters… I love blending different worlds and stepping off the beaten path to create moments that are truly lived — and remembered.</p>`,
+        tags: ["Wine &amp; gastronomy", "Nature", "Culture &amp; heritage", "Ocean", "Local encounters"],
+        body2: `<p>I support companies from A to Z, from finding venues and partners to on-site coordination, in both French and English.</p>
+          <p class="emphasis">Because a successful event is more than just a well-organised programme.</p>
+          <p class="strong">It must tell a story and leave a memory.</p>`,
+        cta: "Let's talk about your project &#8594;",
+        closingSub: "Places that inspire. Encounters that stay. Moments that resonate.",
+        footerContact: "Contact"
+      }
+    };
+
+    function setLang(l) {
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.lang-btn').forEach(b => { if (b.textContent.trim().toLowerCase() === l) b.classList.add('active'); });
+      document.documentElement.lang = l;
+      const d = t[l];
+      document.getElementById('back-link').innerHTML = d.back;
+      document.getElementById('topbar-right').textContent = d.topbarRight;
+      document.getElementById('h1-title').innerHTML = d.h1;
+      document.getElementById('tagline').textContent = d.tagline;
+      document.getElementById('body-1').innerHTML = d.body1;
+      document.getElementById('tags-block').innerHTML = d.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
+      document.getElementById('body-2').innerHTML = d.body2;
+      document.getElementById('cta-btn').innerHTML = d.cta;
+      document.getElementById('closing-sub').textContent = d.closingSub;
+      document.getElementById('footer-contact').textContent = d.footerContact;
+    }
+  </script>
 </body>
 </html>

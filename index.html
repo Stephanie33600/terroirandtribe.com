@@ -361,9 +361,75 @@
       .email-input { width: 170px; }
       .pillars { gap: 12px; }
     }
+    /* === AGE GATE === */
+    .age-gate {
+      position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center;
+      padding: 20px; background: radial-gradient(circle at 50% 20%, rgba(107,122,58,0.35), rgba(30,26,18,0.88));
+      backdrop-filter: blur(6px);
+    }
+    .age-gate.hidden { display: none; }
+    body.gate-active { overflow: hidden; }
+    .age-card {
+      background: var(--cream); border-radius: 20px; width: 100%; max-width: 380px;
+      padding: 38px 32px 32px; text-align: center; position: relative;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+      animation: ageCardIn 0.5s ease;
+    }
+    @keyframes ageCardIn { from { opacity: 0; transform: translateY(16px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+    .age-vine {
+      font-size: 26px; margin-bottom: 10px; letter-spacing: 0.3em;
+    }
+    .age-eyebrow {
+      font-family: "DM Sans", sans-serif; font-size: 10.5px; font-weight: 500; letter-spacing: 0.3em;
+      text-transform: uppercase; color: var(--terracotta); margin-bottom: 10px;
+    }
+    .age-title {
+      font-family: "Syne", sans-serif; font-weight: 800; font-size: 24px; color: var(--green-dark);
+      margin-bottom: 10px; line-height: 1.25;
+    }
+    .age-sub {
+      font-family: "DM Sans", sans-serif; font-size: 13px; color: var(--ink); opacity: 0.75;
+      line-height: 1.6; margin-bottom: 22px;
+    }
+    .age-select {
+      width: 100%; font-family: "DM Sans", sans-serif; font-size: 15px; font-weight: 500; color: var(--green-dark);
+      padding: 12px 14px; border-radius: 10px; border: 1.5px solid rgba(107,122,58,0.3);
+      background: white; margin-bottom: 16px; cursor: pointer;
+    }
+    .age-btn {
+      width: 100%; font-family: "DM Sans", sans-serif; font-size: 14px; font-weight: 600; color: white;
+      background: var(--terracotta); border: none; padding: 13px; border-radius: 10px; cursor: pointer;
+      transition: background 0.25s;
+    }
+    .age-btn:hover { background: #a8663c; }
+    .age-btn:disabled { background: #d9c9b8; cursor: not-allowed; }
+    .age-legal {
+      font-family: "DM Sans", sans-serif; font-size: 10px; color: var(--ink); opacity: 0.5;
+      line-height: 1.5; margin-top: 16px;
+    }
+    .age-denied .age-vine, .age-denied .age-eyebrow, .age-denied .age-select, .age-denied .age-btn { display: none; }
+    .age-denied .age-title { color: var(--terracotta); }
+    .age-leave-link {
+      display: inline-block; margin-top: 6px; font-family: "DM Sans", sans-serif; font-size: 13px;
+      font-weight: 600; color: var(--green-dark);
+    }
   </style>
 </head>
 <body>
+  <div class="age-gate" id="age-gate">
+    <div class="age-card" id="age-card">
+      <div class="age-vine">🍇</div>
+      <p class="age-eyebrow" id="age-eyebrow">Terroir &amp; Tribe</p>
+      <p class="age-title" id="age-title">Quel est votre millésime ? <span style="font-size:0.6em; opacity:0.6; display:block; font-weight:500; margin-top:4px;">What's your vintage year?</span></p>
+      <p class="age-sub" id="age-sub">Ce site présente des vins et spiritueux, réservé aux personnes majeures.<br><span style="opacity:0.75;">This site features wine and spirits, for adults only.</span></p>
+      <select class="age-select" id="age-year">
+        <option value="" id="age-placeholder">Choisir une année · Choose a year</option>
+      </select>
+      <button class="age-btn" id="age-submit" disabled onclick="checkAge()">Entrer · Enter</button>
+      <p class="age-legal" id="age-legal">En continuant, vous confirmez avoir l'âge légal pour consommer de l'alcool dans votre pays de résidence. L'abus d'alcool est dangereux pour la santé, à consommer avec modération.<br>By continuing, you confirm you are of legal drinking age in your country of residence.</p>
+    </div>
+  </div>
+
   <div class="shape shape-1"></div>
   <div class="shape shape-2"></div>
   <div class="shape shape-3"></div>
@@ -582,6 +648,47 @@ const lionelWines = [
       document.getElementById("email-form").style.display = "none";
       document.getElementById("success-msg").style.display = "block";
     }
+
+    /* === AGE GATE LOGIC === */
+    (function initAgeGate() {
+      const gate = document.getElementById('age-gate');
+      const card = document.getElementById('age-card');
+      const yearSelect = document.getElementById('age-year');
+      const submitBtn = document.getElementById('age-submit');
+
+      if (localStorage.getItem('tt_age_verified') === 'yes') {
+        gate.classList.add('hidden');
+        return;
+      }
+      document.body.classList.add('gate-active');
+
+      const currentYear = new Date().getFullYear();
+      for (let y = currentYear; y >= currentYear - 100; y--) {
+        const opt = document.createElement('option');
+        opt.value = y;
+        opt.textContent = y;
+        yearSelect.appendChild(opt);
+      }
+
+      yearSelect.addEventListener('change', () => {
+        submitBtn.disabled = !yearSelect.value;
+      });
+
+      window.checkAge = function () {
+        const birthYear = parseInt(yearSelect.value, 10);
+        const age = currentYear - birthYear;
+        if (age >= 18) {
+          localStorage.setItem('tt_age_verified', 'yes');
+          gate.classList.add('hidden');
+          document.body.classList.remove('gate-active');
+        } else {
+          card.classList.add('age-denied');
+          document.getElementById('age-title').textContent = "L'accès à ce site n'est pas autorisé.";
+          document.getElementById('age-sub').innerHTML = "Ce site présente des boissons alcoolisées, réservées aux personnes majeures.<br><span style='opacity:0.75;'>This site features alcoholic beverages, for adults only.</span><br><a class='age-leave-link' href='https://www.google.com'>Quitter le site · Leave site &#8594;</a>";
+          document.getElementById('age-legal').textContent = '';
+        }
+      };
+    })();
 
   </script>
 </body>

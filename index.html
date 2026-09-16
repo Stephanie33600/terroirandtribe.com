@@ -88,13 +88,6 @@
     }
     .lang-btn.active { border-color: var(--green); background: rgba(255,255,255,0.8); }
     .lang-btn:hover { border-color: var(--green-light); }
-    .nav-events {
-      font-family: "DM Sans", sans-serif; font-size: 12px; font-weight: 500;
-      color: var(--green-dark); background: rgba(255,255,255,0.5); border: 1.5px solid transparent;
-      padding: 6px 16px; cursor: pointer; border-radius: 20px; backdrop-filter: blur(8px);
-      transition: all 0.25s; margin-left: 10px; text-decoration: none; display: inline-block;
-    }
-    .nav-events:hover { border-color: var(--green-light); background: rgba(255,255,255,0.8); }
     .topbar-right {
       font-family: "Space Grotesk", sans-serif; font-size: 11px; font-weight: 500; color: var(--green-dark);
       opacity: 0.6; letter-spacing: 0.12em; text-transform: uppercase;
@@ -363,7 +356,6 @@
     @media (max-width: 640px) {
       .topbar { padding: 14px 20px; }
       .topbar-right { display: none; }
-      .nav-events { font-size: 10px; padding: 6px 10px; margin-left: 6px; }
       .footer { padding: 12px 20px 16px; }
       .footer-right { display: none; }
       .email-input { width: 170px; }
@@ -446,7 +438,6 @@
     <div class="topbar-lang">
       <button class="lang-btn active" onclick="setLang('fr')">FR</button>
       <button class="lang-btn" onclick="setLang('en')">EN</button>
-      <a class="nav-events" id="nav-events" href="evenements-experiences.html">Événements &amp; Expériences</a>
     </div>
     <span class="topbar-right" id="topbar-tag">vignerons familiaux · France 🍇</span>
   </nav>
@@ -602,7 +593,6 @@
       document.getElementById("vigneron5-cta").innerHTML = t.v5cta;
       document.getElementById("vigneron6-quote").textContent = t.v6quote;
       document.getElementById("vigneron6-cta").innerHTML = t.v6cta;
-      document.getElementById("nav-events").innerHTML = t.eventsNav;
     }
 const lionelWines = [
 {n:'Marius',a:'AOP Bordeaux Supérieur',v:'2021',c:'rouge',img:'/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHCAkIBgoJCAkMCwoMDxoRDw4ODx8WGBMaJSEnJiQhJCMpLjsyKSw4LCMkM0Y0OD0/QkNCKDFITUhATTtBQj//2wBDAQsMDA8NDx4RER4/KiQqPz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz//wAARCACZADIDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDxmiiigDvvB3w5PiPS0vptUW1WQnYiw7zgHGScitnWPg3LaabNc2OsLPJFGX8uWDZuwM4BBOK2vhPcSzeHrdF2oqFl6Zzgmu48UTS2nhbU7hSrmO1kbaRjPymufnlzNF2Vj5WoooroICiiigAooooA9z+EKY8NQN6u/wD6Ea7jxTH5nhTVE/vWco/8cNcf8JUx4UtT67j/AOPGu311N+g3y8820g/8dNcn2pepp0R8m0UUV1mYUUUUAFFFFAHZaJq17Z6faxw308CbD8qSlR1NW7vxBqboUXVrtgykEee3PH1rDt0P2e3Uf88xQBlgKXs1e4+bSxz1FKw2sR6HFJTEFFFFABQAWYAdTxRVrTIvO1GFccBtx/DmgDqrG3DT4I4RQPyFUEUkA1v2MflQOx+89Vxp7fY9+OhqgOKvU8u9mX0Y1BWpr8BivVcjAdf1H+RWXUgFFFFABXQeFrXfLJOw4A2j+v8ASufUFmCgZJOAK7rS7dbSxSLIBx8x/maYGhCA5IXuwA/OtNYx/ZpTHIUH9Fqrpyx+Ym4gEkce++PH6lq1sJ5RTP3uPzXH9aCjhvE9p5uneao+aFsn6dD/AJ9q4+vSriNZFeNxlXBBHsa87vLdrW7lgfqjYz6jsaGSQ0UUUgL+iw+bqCk9IxuP9K6nzDjH4f5/OsDQFwk8n0FbG/BX/P8AnpVJAXoZyl1E+fuyIfyLH/CtOG5ZrSIk/MIkJPqcf/WrAD9/TJ/nV61l/dAZ6JGP0NFguWZj82fWuV8V24WaG5UffG1vqOn+faulZ8xrWV4iQSaMzd43Df0/rQwOPoooqQOp8N6fNdaPLJbRtI/n7Sox0wDmtiLw9qsgz9mx9ZF/xrd+EcEMnhy4aSJWb7UwyRn+Fa9OtLeADiGP/vgUudoLM8ePhbUzEQI03MuBmQVJa+GtUUSeaka424xID0r1+a9063uba3do/NuGZYgqZBK9RkcDFEF7p88e9Sir5SSkugGFckLn3yOlLnYWPJH0HUlUAQBhnjDr/jWbr2l3kGgXbTQOoVQT0OBmveTbwH70MZ+qCuT+IltAngfV3SFFYQ8ELg/eFPnuFmfONFFFMD1/4TzR2/hK9nmbbHHcuzHGcAIpNdxLqdpeaPC9rfmH7XII7eZQf9ZnIB9uOfavPvhlbPd+C9TgjOHllkjXcflyUA5rpI/DOqvo+mWqNbLLZzNK+HIDcjGOPTNZvcHfoa0Mnh9Z7y6mleSWxuTNICrbYZWO1towM5I96nN34eeC0mhuBElxOiQ4DAO0Z+UFT/CM+3aoNQ0C5ltdfjja3STUJEki3PjGNpO7jjlWrNj8JaibDR4ZJbbzLS5d5dr5yCQRjjn7vSjQWvY29O1vT7GC8iudQa4ltSXu5GVvlcttO0emeABVTx7cw3nw61O5tnEkMtuGRh3G4VTm8JaiZNcLS2wF+T5OXIx+83YPHpTPFelnTvhheW0sjM9vahTtb5T8woGr9TwCiiitAPYPg7/yL12P+ns/+gLXqNqo4OK+evCWszabp86W6qzGXcdxPTGO30rpYPHN/EMGBT9JWFJ029SedJ2PWrybUVnZbe3Vox3xkn0xyOevtVi3uJ5JgsljJCpBJdnUge3HevKk8f3hxmBvwnP+FWE8bXbKT5bjP/Tc/wCFL2ch86PVjGpOSuSK5X4j/wDIi6v/ANcf/ZhXDz+O75eFhBx3MzGsXXvFV7f6LeRTRxqkiBTgk9SPU01SktRe0R5/RRRTKJra5ktnLRnrwQe9XP7VPeLn/erNopqTQmkzVGr46Q/+PU7+22xjyv8Ax6siinzMXKjUOrk/8sR+LVWu7+W6QRkBYwc7R3PvVSijmbDlQUUUVJR//9k='},

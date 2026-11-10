@@ -68,17 +68,16 @@ footer a{color:inherit;text-decoration:none}footer a:hover{text-decoration:under
 <footer><span style="display:flex;align-items:center;gap:10px"><svg viewBox="0 0 80 90" width="22" fill="none" stroke="#e9c98a" stroke-width="4" stroke-linecap="round"><path d="M22 14c3 5 9 5 18 5s15 0 18-5M40 19v62M8 60c14-14 40-14 64 0M14 72c12-10 36-10 52 0"/></svg>&copy; 2026 Terroir &amp; Tribe</span><span><a href="mailto:contact@terroirandtribe.com">Contact</a> &nbsp;·&nbsp; <a href="#">Instagram</a></span></footer><div id="gate" role="dialog" aria-modal="true"><div class="gbox"><div class="gl"><svg viewBox="0 0 80 90" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#a8672a" stroke-width="3" stroke-linecap="round"><path d="M22 14c3 5 9 5 18 5s15 0 18-5"/><path d="M40 19v62"/><path d="M8 60c14-14 40-14 64 0"/><path d="M14 72c12-10 36-10 52 0"/></svg></div>
 <h1 data-i="g_t">Quel est votre millésime ?</h1><p class="gs" data-i="g_s">Année de naissance</p><i></i>
 <p data-i="g_d">Ce site présente des vins et spiritueux et s'adresse aux personnes majeures.</p>
-<select id="g-y" aria-label="Année de naissance"></select><button id="g-b" data-i="g_b">Entrer</button><p class="gerr" id="g-e"></p>
+<input id="g-y" type="text" inputmode="numeric" maxlength="4" autocomplete="off" placeholder="AAAA" aria-label="Année de naissance"><button id="g-b" data-i="g_b">Entrer</button><p class="gerr" id="g-e"></p>
 <p class="gf" data-i="g_f">L'abus d'alcool est dangereux pour la santé. À consommer avec modération.</p>
 <div class="gt"><button class="on" data-l="fr" onclick="setLang('fr')">FR</button><button data-l="en" onclick="setLang('en')">EN</button></div></div></div><style>#gate{position:fixed;inset:0;z-index:99;background:rgba(33,30,27,.55);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:20px;text-align:center;animation:gfade .5s both}#gate.off{display:none}
 .gbox{position:relative;z-index:2;width:100%;max-width:440px;background:#f2ede1;border-radius:24px;padding:34px 30px 24px;box-shadow:0 24px 60px rgba(0,0,0,.35);overflow:hidden;animation:gpop .7s .25s cubic-bezier(.2,1.4,.4,1) both}.gbox:after{content:"";display:block;height:46px;margin:18px -30px -24px;background:linear-gradient(#f2ede1 0,#f2ede1 30%,#bfc08f 30% 62%,#8a9460 62%);clip-path:ellipse(75% 100% at 50% 100%)}@keyframes gfade{from{opacity:0}}@keyframes gpop{from{opacity:0;transform:translateY(40px) scale(.9)}}@media(prefers-reduced-motion:reduce){#gate,.gbox{animation:none}}.gl svg{width:64px}#gate h1{font:500 28px Oswald,Georgia,serif;letter-spacing:.06em;text-transform:uppercase;margin:10px 0 4px}
 .gs{font:400 13px Oswald,Georgia,serif;letter-spacing:.25em;color:#a8672a;text-transform:uppercase;margin:0}#gate i{display:block;width:60px;height:2px;background:#a8672a;margin:14px auto}
-#gate select{padding:12px 18px;border:1px solid #c9bfa6;border-radius:30px;background:#fff8;font:inherit;font-size:16px;margin-right:8px}
+#gate input{width:110px;text-align:center;padding:12px 18px;border:1px solid #c9bfa6;border-radius:30px;background:#fff8;font:inherit;font-size:16px;margin-right:8px}
 #g-b{padding:12px 28px;border:0;border-radius:30px;background:#211e1b;color:#fff;font:400 13px Oswald,Georgia,serif;letter-spacing:.15em;text-transform:uppercase;cursor:pointer}
 .gerr{color:#9a3b2a;min-height:20px;margin:10px 0 0}.gf{font-size:12px;opacity:.7}.gt{margin-top:8px}.gt button{border:1px solid #a8672a;background:none;color:#a8672a;border-radius:20px;padding:4px 12px;cursor:pointer;margin:0 3px;font-size:12px}.gt button.on{background:#a8672a;color:#fff}
 .gh{position:absolute;left:0;right:0;bottom:0;width:100%;height:30vh;z-index:1}</style>
-<script>
-/* ============================================================
+<script>/* ============================================================
    CUVÉES DES VIGNERONS — fichier à modifier pour ajouter des vins
    Chaque vigneron a : nom, initiales, et la liste "vins".
    Un vin = {n:'Nom', a:'Appellation', v:'Millésime', c:'rouge|blanc|rose', d:'description (facultatif)', img:'(photo en base64, facultatif)'}
@@ -202,7 +201,6 @@ const CUVEES = {
   ] },
   lambert: { nom:'Marie-Anne & Frédéric Lambert', initiales:'ML', vins: [] }
 };
-
 </script><script>var CV=(typeof CUVEES!=='undefined')?CUVEES:{lionel:{nom:'Lionel Raymond',initiales:'LR',vins:[]},fanny:{nom:'Fanny & François Boyer',initiales:'FB',vins:[]},laurent:{nom:'Laurent Abba',initiales:'LA',vins:[]},olivier:{nom:'Olivier Langlais',initiales:'OL',vins:[]},arbeau:{nom:'Famille Arbeau',initiales:'FA',vins:[]},lambert:{nom:'Marie-Anne & Frédéric Lambert',initiales:'ML',vins:[]}};</script><script>
 var lang="fr";
 var I18N={
@@ -230,7 +228,7 @@ document.querySelectorAll("[data-i]").forEach(function(e){e.textContent=t(e.data
 document.querySelectorAll("[data-ih]").forEach(function(e){e.innerHTML=t(e.dataset.ih)});
 document.querySelectorAll("[data-ip]").forEach(function(e){e.placeholder=t(e.dataset.ip)});
 document.querySelectorAll(".lbtn,.gt button").forEach(function(b){b.classList.toggle("on",b.dataset.l===l)});
-var y=document.getElementById("g-y");if(y&&y.options.length)y.options[0].text=t("g_pick");
+
 document.getElementById("g-e").textContent="";
 var h=new Date().getHours(),k=h<5?3:h<12?0:h<18?1:h<22?2:3,gr=document.getElementById("greet");
 if(k<0){gr.innerHTML="";gr.style.display="none"}else{gr.style.display="";gr.innerHTML=t("hello")[k]+' <span style="color:var(--ochre)">·</span> '+t("hello2")[k]}
@@ -267,11 +265,11 @@ document.getElementById("email-form").style.display="none";document.getElementBy
 if("IntersectionObserver"in window){new IntersectionObserver(function(en,o){if(en[0].isIntersecting){run();o.disconnect()}}).observe(document.getElementById("stats"))}else run()})();
 /* ---- porte d'âge ---- */
 (function(){var g=document.getElementById("gate"),y=document.getElementById("g-y");
-y.add(new Option("",""));for(var i=0,c=new Date().getFullYear();i<=100;i++)y.add(new Option(c-i,c-i));
 try{if(localStorage.getItem("tt_age_verified")==="yes")g.classList.add("off")}catch(e){}
 if(!g.classList.contains("off"))document.body.style.overflow="hidden";
+y.addEventListener("input",function(){y.value=y.value.replace(/\D/g,"")});y.addEventListener("keydown",function(ev){if(ev.key==="Enter")document.getElementById("g-b").click()});
 document.getElementById("g-b").onclick=function(){var v=parseInt(y.value,10),e=document.getElementById("g-e");
-if(!v){e.textContent=t("g_pick")+" ↑";return}
+if(!v||v<1900||v>new Date().getFullYear()){e.textContent=t("g_pick")+" ↑";return}
 if(new Date().getFullYear()-v>=18){try{localStorage.setItem("tt_age_verified","yes")}catch(x){}g.classList.add("off");document.body.style.overflow=""}else e.textContent=t("g_no")}})();
 var sv="fr";try{sv=localStorage.getItem("tt_lang")}catch(e){}
 setLang(sv==="en"?"en":"fr");
